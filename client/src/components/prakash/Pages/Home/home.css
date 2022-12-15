@@ -1,0 +1,24 @@
+.movingDivBox{
+    width: 99vw;
+    overflow: hidden;
+}
+
+.movingDiv{
+    /* pointer-events: none; */
+    position: absolute;
+    width: calc(300px*10);
+    animation: scroll 70s linear infinite;
+    margin-top: 70px;
+}
+
+.movingDiv:hover{
+    animation: scroll 0s linear infinite;
+}
+@keyframes scroll{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-300px*5));
+    }
+}
