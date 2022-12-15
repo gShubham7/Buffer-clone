@@ -3,10 +3,7 @@ import "./App.css";
 import Register from "./components/sandeep/Register";
 
 function App() {
-  return <div className="App">
-    {/* <Login/> */}
-    <Register/>
-  </div>;
+
 }
 
 export default App;
