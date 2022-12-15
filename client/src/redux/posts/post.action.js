@@ -25,7 +25,7 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const createPost = (formData, token) => async (dispatch) => {
+export const createPost = (formData, channel, token) => async (dispatch) => {
   console.log(formData);
   dispatch({ type: CREATE_POST_REQUEST });
   try {

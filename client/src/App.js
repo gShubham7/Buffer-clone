@@ -1,7 +1,10 @@
 import "./App.css";
+import { Publishing } from "./pages/Publishing";
 
 function App() {
-  return <div className="App"></div>;
+  return <div className="App">
+    <Publishing/>
+  </div>;
 }
 
 export default App;
