@@ -5,13 +5,13 @@ import {
     compose,
   } from "redux";
   import thunk from "redux-thunk";
-  // import { authReducer } from "./auth/auth.reducer";
+  import { authReducer } from "./auth/auth.reducer";
   import { registerReducer } from "./register/register.reducer";
 //   import { postReducer } from "./posts/post.reducer";
   
   const rootReducer = combineReducers({
       register: registerReducer,
-      // auth: authReducer,
+      auth: authReducer,
     // posts: postReducer,
   });
   

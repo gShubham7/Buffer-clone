@@ -3,7 +3,7 @@ import { Publishing } from "./pages/Publishing";
 
 function App() {
   return <div className="App">
-    <Publishing/>
+
   </div>;
 }
 
