@@ -1,17 +1,12 @@
-import { NavLink } from "react-router-dom";
 import "./App.css";
-import FBPost from "./components/shubham/fbPosts";
-import { Publishing } from "./pages/Publishing";
-import AllRoutes from "./routes/AllRoutes";
+// import Login from "./components/sandeep/Login";
+import Register from "./components/sandeep/Register";
 
 function App() {
-  return (
-    <div className="App">
-      {/* <AllRoutes /> */}
-      {/* <NavLink to="/publishing">Publish</NavLink> */}
-      <Publishing />
-    </div>
-  );
+  return <div className="App">
+    {/* <Login/> */}
+    <Register/>
+  </div>;
 }
 
 export default App;
