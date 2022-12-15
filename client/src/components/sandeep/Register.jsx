@@ -25,7 +25,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { registerUser } from "../../redux/register/register.actions";
-import Recaptcha from "./components/Recaptcha";
+import Recaptcha from "./Recaptcha";
 // import Loading from "../Sufiyan/components/Loding";
 
 const Register = () => {

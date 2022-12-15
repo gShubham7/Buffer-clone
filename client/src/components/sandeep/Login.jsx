@@ -23,7 +23,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { login } from "../../redux/auth/auth.actions";
-import { signInWithGoogle } from "./components/firbase";
+import { signInWithGoogle } from "./firbase";
 // import Loading from "../sandeep/components/loading";
 
 const Login = () => {
