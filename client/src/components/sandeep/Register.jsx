@@ -135,10 +135,6 @@ const Register = () => {
               placeholder="Enter Your Password..."
             />
           </FormControl>
-          {/* <FormControl>
-            <FormLabel> Confirm Password</FormLabel>
-            <Input type="password" placeholder="Re-Enter Your Password..." />
-          </FormControl> */}
         </Stack>
         <Stack textAlign="left" spacing={3} w="85%" 
             paddingLeft={{ base: "20px", md: "50px" }} 
@@ -187,7 +183,6 @@ const Register = () => {
         </Text> <br />
         <Center>
         <Image
-          // paddingLeft="20"
           width="30%"
           src="https://static.buffer.com/login/public/img/signup-avatar-publish.png"
         /> 
