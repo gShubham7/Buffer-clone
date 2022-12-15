@@ -1,0 +1,10 @@
+.inner-carousel {
+  display: flex;
+  border: 2px orange dotted;
+  gap: 10px;
+  overflow: hidden;
+  padding: 10rem 0;
+}
+.carousel {
+  overflow: hidden;
+}
