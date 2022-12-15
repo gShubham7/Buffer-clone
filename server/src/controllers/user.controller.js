@@ -43,8 +43,19 @@ const profile = async (req, res) => {
 
 //all posts displayed........
 const posts = async (req, res) => {
-  const allposts = await PostModel.find({});
-  return res.status(200).send({ posts: allposts });
+  const { token } = req.headers.authorization;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await UserModel.findById(decoded._id);
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    const posts = await PostModel.find({ author_id: user._id });
+    return res.status(200).send(posts);
+  } catch (err) {
+    return res.status(401).send({ error: "Invalid token" });
+  }
 };
 
 //search post............
@@ -117,7 +128,9 @@ const post_CommentId = async (req, res) => {
 
 //create the post...........................
 const createPost = async (req, res) => {
-  const { title, content, date, token } = req.body;
+  const { title, start, end, channels } = req.body;
+  const token = req.headers.authorization;
+  const { facebook, instagram, linkedin } = channels;
 
   if (req.file) {
     cloudinary.uploader.upload(
@@ -161,18 +174,41 @@ const createPost = async (req, res) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await UserModel.findById(decoded._id);
+
       if (!user) {
         return res.status(404).send({ error: "User not found" });
       }
       const post = new PostModel({
         title,
-        content,
+        start,
+        end,
         author: user.name,
         author_id: user._id,
-        created_at: date,
+        created_at: new Date(),
       });
       await post.save();
-      user.fb_posts.push(blog._id);
+
+      if (facebook && instagram && linkedin) {
+        user.facebook_posts.push(post._id);
+        user.instagram_posts.push(post._id);
+        user.linkedin_posts.push(post._id);
+      } else if (facebook && instagram) {
+        user.facebook_posts.push(post._id);
+        user.instagram_posts.push(post._id);
+      } else if (facebook && linkedin) {
+        user.facebook_posts.push(post._id);
+        user.linkedin_posts.push(post._id);
+      } else if (instagram && linkedin) {
+        user.instagram_posts.push(post._id);
+        user.linkedin_posts.push(post._id);
+      } else if (facebook) {
+        user.facebook_posts.push(post._id);
+      } else if (instagram) {
+        user.instagram_posts.push(post._id);
+      } else if (linkedin) {
+        user.linkedin_posts.push(post._id);
+      }
+
       await user.save();
       return res.status(200).send({
         message: "Post created successfully",

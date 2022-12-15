@@ -4,8 +4,10 @@ import format from "date-fns/format";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
+import getTime from "date-fns/getTime";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { FaUserCircle } from "react-icons/fa";
 import {
   Box,
@@ -19,16 +21,17 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Select,
   Textarea,
   useToast,
   HStack,
   FormControl,
   Input,
+  CheckboxGroup,
+  Stack,
+  Checkbox,
 } from "@chakra-ui/react";
-import { Schedule_Date } from "./DatePicker";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../redux/posts/post.action";
 
@@ -40,6 +43,7 @@ const localizer = dateFnsLocalizer({
   parse,
   startOfWeek,
   getDay,
+  getTime,
   locales,
 });
 
@@ -69,36 +73,29 @@ const CalendarComponent = () => {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedDate, setSelectedDate] = useState("");
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [schedule, setSchedule] = useState("");
   const [image, setImage] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [imageName, setImageName] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [channel, setChannel] = useState(["facebook", "instagram", "linkedin"]);
+  const [selectedChannel, setSelectedChannel] = useState({
+    facebook: true,
+    instagram: true,
+    linkedin: true,
+  });
 
   const handleAddEvent = () => {
     setAllEvents([...allEvents, newEvent]);
   };
 
-  const handleEvent = (value) => {
-    setNewEvent({ title: `${value}`, start: new Date(), end: new Date() });
-  };
-
-  const handleSelectSlot = useCallback(
-    (selectedSlot) => {
-      if (selectedSlot < new Date()) {
-        return;
-      }
-      setSelectedDate(selectedSlot.start);
-      onOpen();
-    },
-    [newEvent]
-  );
+  const handleSelectSlot = useCallback(() => {
+    onOpen();
+  }, [newEvent]);
 
   const handleSelectEvent = useCallback(
     (event) =>
@@ -113,15 +110,44 @@ const CalendarComponent = () => {
 
   const { defaultDate, scrollToTime } = useMemo(
     () => ({
-      defaultDate: new Date(2015, 3, 12),
-      scrollToTime: new Date(1970, 1, 1, 6),
+      defaultDate: new Date(),
+      scrollToTime: new Date(),
     }),
     []
   );
 
   const handleSubmit = () => {
-    dispatch(createPost(newEvent));
+    if (!newEvent.title) {
+      return toast({
+        description: "Text field is empty",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else if (!newEvent.start || !newEvent.end) {
+      return toast({
+        description: "Please schedule your Post date",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else if (Object.values(selectedChannel).every((el) => el === false)) {
+      return toast({
+        description: "Please select minimun one channel",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    dispatch(createPost({ ...newEvent, channels: selectedChannel }));
     setAllEvents([...allEvents, newEvent]);
+    setNewEvent({});
+    onClose();
+  };
+
+  const handleChannel = (e) => {
+    const { name, checked } = e.target;
+    setSelectedChannel({ ...selectedChannel, [name]: checked });
   };
 
   return (
@@ -133,7 +159,7 @@ const CalendarComponent = () => {
           borderRadius="3px"
           size="md"
           position="absolute"
-          right="21%"
+          right="22%"
           mt="-2px"
           onClick={onOpen}
         >
@@ -157,6 +183,21 @@ const CalendarComponent = () => {
             </ModalHeader>
             <ModalBody>
               <FaUserCircle icon="fa-duotone" size="26px" swapopacity="true" />
+              <CheckboxGroup colorScheme="green" defaultValue={channel}>
+                <Stack spacing={[1, 5]} direction={"row"}>
+                  {channel.map((el) => (
+                    <Checkbox
+                      defaultChecked
+                      key={el}
+                      value={el}
+                      name={el}
+                      onChange={(e) => handleChannel(e)}
+                    >
+                      {el}
+                    </Checkbox>
+                  ))}
+                </Stack>
+              </CheckboxGroup>
               <Textarea
                 h="250px"
                 mt="10px"
@@ -164,8 +205,6 @@ const CalendarComponent = () => {
                   setNewEvent({
                     ...newEvent,
                     title: e.target.value,
-                    start: selectedDate,
-                    end: selectedDate,
                   })
                 }
                 placeholder="What would you like to share?"
@@ -177,7 +216,7 @@ const CalendarComponent = () => {
                 <Box fontWeight="bold">
                   <Text>Schedule Time </Text>
                   {/* <Schedule_Date /> */}
-                  <Input
+                  {/* <Input
                     placeholder="Select Date and Time"
                     size="xs"
                     type="datetime-local"
@@ -188,6 +227,13 @@ const CalendarComponent = () => {
                         start: new Date(),
                         end: new Date(),
                       })
+                    }
+                  /> */}
+                  <DatePicker
+                    placeholderText="Start Date"
+                    selected={newEvent.start}
+                    onChange={(start) =>
+                      setNewEvent({ ...newEvent, start, end: start })
                     }
                   />
                 </Box>
@@ -213,14 +259,6 @@ const CalendarComponent = () => {
                   onClick={() => {
                     handleAddEvent();
                     handleSubmit();
-                    toast({
-                      description:
-                        "Great! The post has been added to your queue.",
-                      status: "success",
-                      duration: 3000,
-                      isClosable: true,
-                    });
-                    onClose();
                   }}
                 >
                   Add to Queue
@@ -238,9 +276,9 @@ const CalendarComponent = () => {
           onSelectSlot={handleSelectSlot}
           selectable
           scrollToTime={scrollToTime}
-          // defaultDate={defaultDate}
+          defaultDate={defaultDate}
           popup
-          style={{ height: "83vh" }}
+          style={{ height: "83vh", width: "81vw" }}
         />
       </Box>
     </>

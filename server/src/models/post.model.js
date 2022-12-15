@@ -2,56 +2,58 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
   {
-    // title: {
-    //   type: String,
-    //   required: true,
-    // },
-    image: {
-      type: String,
-    },
-    cloudinaryId: {
-      type: String,
-    },
-    content: {
+    title: {
       type: String,
       required: true,
+    },
+    // image: {
+    //   type: String,
+    // },
+    // cloudinaryId: {
+    //   type: String,
+    // },
+    start: {
+      type: String,
+    },
+    end: {
+      type: String,
     },
     author: {
       type: String,
-      required: true,
+      // required: true,
     },
     author_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+      ref: "user",
+      // required: true,
     },
     created_at: {
       type: Date,
-      required: true,
+      // required: true,
     },
-    likes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    comments: [
-      {
-        name: {
-          type: String,
-        },
-        comment: {
-          type: String,
-        },
-        date: {
-          type: Date,
-        },
-      },
-    ],
-  },
-  { collection: "post-data" }
+    // likes: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //   },
+    // ],
+    // comments: [
+    //   {
+    //     name: {
+    //       type: String,
+    //     },
+    //     comment: {
+    //       type: String,
+    //     },
+    //     date: {
+    //       type: Date,
+    //     },
+    //   },
+    // ],
+  }
+  // { collection: "post-data" }
 );
 
-const PostModel = mongoose.model("PostData", PostSchema);
+const PostModel = mongoose.model("post", PostSchema);
 
 module.exports = PostModel;

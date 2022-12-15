@@ -28,28 +28,28 @@ const UserSchema = new mongoose.Schema(
     linkedin_id: {
       type: String,
     },
-    fb_posts: [
+    facebook_posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
+        ref: "post",
       },
     ],
     instagram_posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
+        ref: "post",
       },
     ],
     linkedin_posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
+        ref: "post",
       },
     ],
-  },
-  { collection: "user-data" }
+  }
+  // { collection: "user-data" }
 );
 
-const UserModel = mongoose.model("UserData", UserSchema);
+const UserModel = mongoose.model("user", UserSchema);
 
 module.exports = UserModel;
