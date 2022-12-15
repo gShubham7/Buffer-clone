@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Center,
   // ButtonGroup,
@@ -19,16 +20,16 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import "./components/Register.css"
+import "./Register.css"
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { registerUser } from "../../redux/register/register.actions";
-import Recaptcha from "./components/Recaptcha";
+import Recaptcha from "./Recaptcha";
 // import Loading from "../Sufiyan/components/Loding";
 
 const Register = () => {
-  // const { isAuth } = useSelector((store) => store.auth);
+  const { isAuth } = useSelector((store) => store.auth);
   const { isRegistered, loading, error, successMessage, errorMessage } =
     useSelector((store) => store.register);
   const dispatch = useDispatch();
@@ -87,16 +88,16 @@ const Register = () => {
       <VStack
         spacing={3}
         w="250vh"
-        padding={{ base: "20px", md: "50px 100px" }}
+        padding={{ base: "20px", md: "50px" }}
         height="100vh"
-      >
-        <Stack w="85%" textAlign="left">
-          <Text marginTop={250} fontSize="3xl" fontWeight="bold">
+      > 
+       <Box paddingRight={{base:"20%",md:"40%"}} paddingTop={{base:0,md:50}}><Image w={400} paddingRight={"40%"} src="./Ecotone_small.png"/></Box>
+        <Stack w="85%" textAlign="left" paddingLeft={{ base: "20px", md: "50px" }} paddingRight={{ base: "20px", md: "50px" }}>
+          <Text marginTop={{base:30,md:100}} fontSize="3xl" fontWeight="bold">
             Let's get your account set up
           </Text>
         </Stack>
-
-        <Stack spacing={3} w="85%">
+        <Stack spacing={3} w="85%" paddingLeft={{ base: "20px", md: "50px" }}  paddingRight={{ base: "20px", md: "50px" }}>
           {/* <FormControl>
             <FormLabel>Name</FormLabel>
             <Input
@@ -139,7 +140,10 @@ const Register = () => {
             <Input type="password" placeholder="Re-Enter Your Password..." />
           </FormControl> */}
         </Stack>
-        <Stack textAlign="left" spacing={3} w="85%">
+        <Stack textAlign="left" spacing={3} w="85%" 
+            paddingLeft={{ base: "20px", md: "50px" }} 
+            paddingRight={{ base: "20px", md: "50px" }}
+         >
           <Recaptcha />
           <Button
             onClick={handleClick}
@@ -159,9 +163,11 @@ const Register = () => {
             )}
           </Button>
         </Stack>
-        <HStack className="display" >
-          <Text>I agree to <span>Buffer's Terms of Service</span></Text>
-          <Link to='/login'><Text>Already have an account?</Text></Link>
+        <HStack className="display"  >
+          <Text paddingBottom={{base:100,md:0}} paddingRight={{base:0,md:0}} paddingLeft={{base:39,md:0}}>
+            I agree to <span>Buffer's Terms of Service</span></Text>
+          <Link to='/login'><Text paddingBottom={{base:100,md:0}} paddingRight={{base:55,md:0}} paddingLeft={{base:10,md:0}}>
+            Already have an account?</Text></Link>
         </HStack>
       </VStack>
 
