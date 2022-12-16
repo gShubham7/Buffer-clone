@@ -7,17 +7,26 @@
     margin-top: 40px;
     padding: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
  }
  .head { 
      margin-left: 50px;
     
  }
  .plus {
-    font-size: 40px;
+    font-size: 20px;
     position: absolute;
-    top: 140px;
-    left:1200px;
-    /* border: 1px solid black; */
-    /* height: 30px;
-    margin-top: 20px; */
+    top: 20px ;
+    right: 20px;
+    /* top: 140px;
+    left:1200px; */
+    /* border: 1px solid black ; */
+    /* padding: 0 10px; */
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
  }
+ 

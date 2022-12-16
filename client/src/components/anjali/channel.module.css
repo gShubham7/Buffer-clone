@@ -27,7 +27,8 @@
 }
 .sidebar > div:hover{
     background-color: rgb(223, 220, 220);
-}
+     /* background-color: #2c4bff; */
+} 
 
 .second {
     margin: auto;
