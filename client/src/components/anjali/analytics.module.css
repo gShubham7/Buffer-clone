@@ -1,0 +1,58 @@
+.Analytics {
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.sidebar {
+ 
+}
+.home {
+    display: flex;
+    gap:15px;
+    margin-bottom: 60px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.home:hover {
+    background-color: gray;
+}
+.channel{
+    border-bottom: 1px solid gray;
+}
+.sidebar > div {
+    margin-bottom: 10px;
+}
+.sidebar > div > div  {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 5px;
+   border-radius: 5px;
+}
+.sidebar > div > div:hover {
+   background-color: gray;
+}
+.sidebar img {
+    width: 30px;
+}
+
+.leftbar {
+    margin: auto;
+    width: 70%;
+    border: 1px solid gray;
+    border-radius: 8px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: left;
+    padding: 20px;
+}
+.tools {
+   
+    border-bottom: 1px solid gray;
+}
