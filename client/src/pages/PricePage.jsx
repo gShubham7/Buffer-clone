@@ -1,21 +1,28 @@
 import { Box, Button, Center, Heading, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
+import Navbar from "../components/prakash/Components/Navbar/Navbar";
 
- const Pricing = () => {
+const Pricing = () => {
   return (
-    <Box >
-      <Heading marginTop="40px" textAlign="center"
-          fontWeight="600"
-          fontSize={{ lg: "36px", sm: "28px" }}
-          lineHeight={{ lg: "50px", sm: "38px" }}>
+    <Box>
+      <Navbar/>
+      <Heading
+        marginTop="40px"
+        textAlign="center"
+        fontWeight="600"
+        fontSize={{ lg: "36px", sm: "28px" }}
+        lineHeight={{ lg: "50px", sm: "38px" }}
+      >
         Publish Flawlessly. <br /> Analyze Effortlessly. Engage Authentically.
       </Heading>
       <br />
-      <Text textAlign="center"
-          fontWeight="400"
-          fontSize={{ lg: "32px", sm: "24px" }}
-          lineHeight={{ lg: "45px", sm: "34px" }}>
+      <Text
+        textAlign="center"
+        fontWeight="400"
+        fontSize={{ lg: "32px", sm: "24px" }}
+        lineHeight={{ lg: "45px", sm: "34px" }}
+      >
         We’ve built simpler social media tools for busy people. Enjoy our free
         plan as <br /> you get started, or trial our full toolkit priced to make
         marketing your business <br /> on social affordable.
@@ -34,20 +41,23 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
             <TabPanels>
               {/* initially mounted */}
               <TabPanel>
-                <Box  p="40px 40px"
-        display="flex"
-        mb="1%"
-        flexDirection={{ lg: "row" , sm: "column" }}
-        justifyContent={{ lg: "space-between" }} gap="5px">
+                <Box
+                  p="40px 40px"
+                  display="flex"
+                  mb="1%"
+                  flexDirection={{ lg: "row", sm: "column" }}
+                  justifyContent={{ lg: "space-between" }}
+                  gap="5px"
+                >
                   <Box border="solid 1px black" textAlign="left" p="15px">
                     <Heading>Free</Heading>
                     <br />
-                    <Text  >
+                    <Text>
                       For individuals and businesses getting started with social
                       media.
                     </Text>
                     <Heading>$ 0</Heading>
-                    <Text   >
+                    <Text>
                       Manage up to three channels Billed at<b> $0/year </b>
                     </Text>
                     <Button
@@ -59,7 +69,7 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
                     >
                       Get Started
                     </Button>
-                    <Text marginTop={2} >
+                    <Text marginTop={2}>
                       <i class="bi bi-check-lg"></i>
                       Basic publishing tools
                       <br />
@@ -69,7 +79,7 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
                     <br />
                     <Link> See all features</Link>
                   </Box>
-                  <Box textAlign="left" p="15px" border="solid 1px black" >
+                  <Box textAlign="left" p="15px" border="solid 1px black">
                     <Heading>Essentials</Heading>
                     <br />
                     <Text>
@@ -93,14 +103,9 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
                     >
                       Try free for 14 Days
                     </Button>
-                    <Text marginTop={2}  >
-                      <i class="bi bi-check-lg">
-                       
-                      </i>
-                      
+                    <Text marginTop={2}>
+                      <i class="bi bi-check-lg"></i>
                       Planning & publishing tools
-                      
-                     
                       <br />
                       <i class="bi bi-check-lg"></i>
                       Analytics tools
@@ -251,10 +256,7 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
                       Try free for 14 Days
                     </Button>
                     <Text marginTop={2}>
-                      <i class="bi bi-check-lg">
-                       
-                      </i>
-                      
+                      <i class="bi bi-check-lg"></i>
                       Planning & publishing tools
                       <br />
                       {/* <i class="bi bi-check-lg"></i> */}
@@ -369,4 +371,4 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
     </Box>
   );
 };
-export default Pricing
+export default Pricing;

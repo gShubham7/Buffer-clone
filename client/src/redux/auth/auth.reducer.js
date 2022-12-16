@@ -6,17 +6,18 @@ import {
 } from "./auth.types";
 
 let LocalToken = localStorage.getItem("token");
-const check = (LocalToken!==undefined)
-const checkAdminAuth = LocalToken ==="admin@gmail.com#admin"
+const check =
+  LocalToken !== undefined && LocalToken !== null && LocalToken !== "";
+// const checkAdminAuth = LocalToken ==="admin@gmail.com#admin"
 
-console.log(typeof LocalToken)
+console.log(typeof LocalToken);
 // const AdminToken = "admin@gmail.com#admin";
 const initialState = {
-  token: {token: LocalToken},
-  isAuth: check ,
+  token: { token: LocalToken },
+  isAuth: check,
   loading: false,
   error: false,
-  AdminIsAuth: checkAdminAuth,
+  AdminIsAuth: false,
 };
 // console.log(token);
 export const authReducer = (state = initialState, { type, payload }) => {
@@ -37,11 +38,11 @@ export const authReducer = (state = initialState, { type, payload }) => {
         token: payload,
         loading: false,
         error: false,
-        AdminIsAuth: payload.token==="admin@gmail.com#admin",
+        // AdminIsAuth: payload.token==="admin@gmail.com#admin",
       };
     }
     case LOGIN_ERROR: {
-     // localStorage.setItem("token", payload);
+      // localStorage.setItem("token", payload);
       return {
         ...state,
         loading: false,
@@ -51,11 +52,12 @@ export const authReducer = (state = initialState, { type, payload }) => {
     }
     case LOGOUT: {
       localStorage.removeItem("token");
+      localStorage.removeItem("email");
       return {
         ...state,
         isAuth: false,
         token: "",
-        AdminIsAuth: false,
+        // AdminIsAuth: false,
       };
     }
     default: {

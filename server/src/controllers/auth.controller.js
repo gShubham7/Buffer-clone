@@ -5,7 +5,7 @@ const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
-  const token = req.headers["authorization"];
+  // const token = req.headers["authorization"];
 
   const user = await UserModel.findOne({ email });
   if (user) {
@@ -16,21 +16,21 @@ const register = async (req, res) => {
       return res.status(500).send({ error: "Internal server error" });
     }
     try {
-      if (token) {
-        const decoded = jwt.verify(token, JWT_SECRET);
+      // if (token) {
+      //   const decoded = jwt.verify(token, JWT_SECRET);
 
-        if (decoded && decoded.role === "Admin") {
-          const user = new UserModel({
-            name,
-            email,
-            password: hash,
-            role: "User",
-          });
-          await user.save();
-          return res.status(201).send("User created succesfully");
-        }
-        return res.status(403).send("You are not allowed to create user");
-      }
+      //   if (decoded && decoded.role === "Admin") {
+      //     const user = new UserModel({
+      //       name,
+      //       email,
+      //       password: hash,
+      //       role: "User",
+      //     });
+      //     await user.save();
+      //     return res.status(201).send("User created succesfully");
+      //   }
+      //   return res.status(403).send("You are not allowed to create user");
+      // }
       const newUser = await UserModel.create({ name, email, password: hash });
       return res.status(201).send({ user: newUser });
     } catch (err) {

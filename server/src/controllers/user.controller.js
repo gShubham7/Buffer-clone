@@ -20,7 +20,8 @@ const data = async (req, res) => {
 
 //profile of the particular user......................
 const profile = async (req, res) => {
-  const { token } = req.body;
+  const token = req.headers.authorization;
+
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await UserModel.findById(decoded._id);
@@ -28,13 +29,13 @@ const profile = async (req, res) => {
       return res.status(404).send({ error: "User not found" });
     }
     const posts = await PostModel.find({ author_id: user._id });
-    const likedPosts = await PostModel.find({ likes: decoded._id });
+    // const likedPosts = await PostModel.find({ likes: decoded._id });
     return res.status(200).send({
       id: user._id,
       name: user.name,
       email: user.email,
       posts: posts,
-      likedPosts: likedPosts,
+      // likedPosts: likedPosts,
     });
   } catch (err) {
     return res.status(401).send({ error: "Invalid token" });
@@ -129,8 +130,10 @@ const post_CommentId = async (req, res) => {
 //create the post...........................
 const createPost = async (req, res) => {
   const { title, start, end, channels } = req.body;
+  // console.log(channels);
   const token = req.headers.authorization;
-  const { facebook, instagram, linkedin } = channels;
+  console.log(token);
+  const { facebook_posts, instagram_posts, linkedin_posts } = channels;
 
   if (req.file) {
     cloudinary.uploader.upload(
@@ -188,24 +191,33 @@ const createPost = async (req, res) => {
       });
       await post.save();
 
-      if (facebook && instagram && linkedin) {
+      // const entries = Object.entries(channels);
+      // const values = Object.values(channels);
+
+      // for (let i = 0; i < entries.length; i++) {
+      //   if (values[i]) {
+      //     user.entries[i].push(post._id);
+      //   }
+      // }
+
+      if (facebook_posts && instagram_posts && linkedin_posts) {
         user.facebook_posts.push(post._id);
         user.instagram_posts.push(post._id);
         user.linkedin_posts.push(post._id);
-      } else if (facebook && instagram) {
+      } else if (facebook_posts && instagram_posts) {
         user.facebook_posts.push(post._id);
         user.instagram_posts.push(post._id);
-      } else if (facebook && linkedin) {
+      } else if (facebook_posts && linkedin_posts) {
         user.facebook_posts.push(post._id);
         user.linkedin_posts.push(post._id);
-      } else if (instagram && linkedin) {
+      } else if (instagram_posts && linkedin_posts) {
         user.instagram_posts.push(post._id);
         user.linkedin_posts.push(post._id);
-      } else if (facebook) {
+      } else if (facebook_posts) {
         user.facebook_posts.push(post._id);
-      } else if (instagram) {
+      } else if (instagram_posts) {
         user.instagram_posts.push(post._id);
-      } else if (linkedin) {
+      } else if (linkedin_posts) {
         user.linkedin_posts.push(post._id);
       }
 

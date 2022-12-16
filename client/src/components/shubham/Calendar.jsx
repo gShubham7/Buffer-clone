@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -32,8 +32,8 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../redux/posts/post.action";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, getPosts } from "../../redux/posts/post.action";
 
 const locales = {
   "en-In": require("date-fns/locale/en-IN"),
@@ -67,6 +67,7 @@ const events = [
 ];
 
 const CalendarComponent = () => {
+  const { data } = useSelector((store) => store.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toast = useToast();
@@ -84,10 +85,15 @@ const CalendarComponent = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [channel, setChannel] = useState(["facebook", "instagram", "linkedin"]);
   const [selectedChannel, setSelectedChannel] = useState({
-    facebook: true,
-    instagram: true,
-    linkedin: true,
+    facebook_posts: true,
+    instagram_posts: true,
+    linkedin_posts: true,
   });
+
+  useEffect(() => {
+    dispatch(getPosts());
+    setAllEvents(data);
+  }, [allEvents]);
 
   const handleAddEvent = () => {
     setAllEvents([...allEvents, newEvent]);
@@ -147,6 +153,7 @@ const CalendarComponent = () => {
 
   const handleChannel = (e) => {
     const { name, checked } = e.target;
+    console.log(name);
     setSelectedChannel({ ...selectedChannel, [name]: checked });
   };
 
@@ -190,7 +197,7 @@ const CalendarComponent = () => {
                       defaultChecked
                       key={el}
                       value={el}
-                      name={el}
+                      name={`${el}_posts`}
                       onChange={(e) => handleChannel(e)}
                     >
                       {el}

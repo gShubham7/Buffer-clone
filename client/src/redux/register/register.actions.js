@@ -6,10 +6,11 @@ import {
 } from "./register.types";
 
 export const registerUser = (creds) => async (dispatch) => {
+  console.log(creds)
   dispatch({ type: REGISTER_REQUEST });
   try {
     let res = await axios.post(
-      "http://localhost:3000/signup",
+      "http://localhost:8080/auth/register",
       creds
     );
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });
