@@ -1,4 +1,10 @@
-.loginbtn:hover{
-    text-decoration: underline;
+.loginbtn:hover {
+  text-decoration: underline;
 }
 
+.nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+}

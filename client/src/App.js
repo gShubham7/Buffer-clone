@@ -1,10 +1,11 @@
-import "./App.css";
-import { Publishing } from "./pages/Publishing";
+import AllRoutes from "./routes/AllRoutes";
 
 function App() {
-  return <div className="App">
-
-  </div>;
+  return (
+    <div className="App">
+      <AllRoutes />
+    </div>
+  );
 }
 
 export default App;

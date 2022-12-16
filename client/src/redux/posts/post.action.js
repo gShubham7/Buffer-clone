@@ -14,32 +14,27 @@ import {
   UPDATE_POST_SUCCESS,
 } from "./post.types";
 
+const token = localStorage.getItem("token");
+axios.defaults.headers.common["Authorization"] = token;
+
 export const getPosts = () => async (dispatch) => {
   dispatch({ type: GET_POST_REQUEST });
   try {
-    const res = await axios.get(`http://localhost:8080/user/posts`);
-    const data = await res.data;
-    dispatch({ type: GET_POST_SUCCESS, payload: data });
+    const res = await axios.post(`http://localhost:8080/user/profile`);
+    const data = await res.data;   
+    dispatch({ type: GET_POST_SUCCESS, payload: data.posts });
   } catch (e) {
     dispatch({ type: GET_POST_FAILURE });
   }
 };
 
-export const createPost = (formData, channel, token) => async (dispatch) => {
+export const createPost = (formData) => async (dispatch) => {
   console.log(formData);
   dispatch({ type: CREATE_POST_REQUEST });
   try {
-    const headers = {
-      "Content-type": "application/json",
-      Authorization: `${token}`,
-    };
-    // const res = await axios.post(
-    //   `http://localhost:8080/user/create`,
-    //   formData,
-    //   { headers }
-    // );
-    // const data = await res.data;
-    // dispatch({ type: CREATE_POST_SUCCESS, payload: data });
+    const res = await axios.post(`http://localhost:8080/user/create`, formData);
+    const data = await res.data;
+    dispatch({ type: CREATE_POST_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: CREATE_POST_FAILURE });
   }
