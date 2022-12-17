@@ -4,6 +4,7 @@ import { AiTwotoneCalendar } from "react-icons/ai";
 import { HiTrendingUp } from "react-icons/hi";
 import { TbList } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
+import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 
 const sideBar = () => {
   return (
@@ -16,7 +17,7 @@ const sideBar = () => {
         borderRight="1px solid #c7c7c7"
       >
         <Box mt="15px" w="100%">
-          <NavLink to="#">
+          <NavLink to="/publishing/calender">
             <Flex
               w="90%"
               borderRadius="4px"
@@ -35,6 +36,7 @@ const sideBar = () => {
               </Text>
             </Flex>
           </NavLink>
+
           <Box mt="10px">
             <NavLink to="#">
               <Flex
@@ -58,7 +60,25 @@ const sideBar = () => {
             </NavLink>
           </Box>
           <Box mt="10px">
-            <NavLink to="#">
+            <Flex
+              w="90%"
+              borderRadius="4px"
+              pl="5px"
+              alignItems="center"
+              gap="5px"
+              m="auto"
+              h="33px"
+              _hover={{
+                cursor: "pointer",
+                backgroundColor: "#D6D6D6",
+              }}
+            >
+              <TbList color="#c7c7c7" />
+              <Text fontSize="sm" fontWeight="semibold">
+                Queues
+              </Text>
+            </Flex>
+            <NavLink to="/publishing/facebook">
               <Flex
                 w="90%"
                 borderRadius="4px"
@@ -66,15 +86,58 @@ const sideBar = () => {
                 alignItems="center"
                 gap="5px"
                 m="auto"
+                ml="40px"
                 h="33px"
                 _hover={{
                   cursor: "pointer",
                   backgroundColor: "#D6D6D6",
                 }}
               >
-                <TbList color="#c7c7c7" />
+                <BsFacebook />
                 <Text fontSize="sm" fontWeight="semibold">
-                  Queues
+                  Facebook
+                </Text>
+              </Flex>
+            </NavLink>
+            <NavLink to="/publishing/instagram">
+              <Flex
+                w="90%"
+                borderRadius="4px"
+                pl="5px"
+                alignItems="center"
+                gap="5px"
+                m="auto"
+                ml="40px"
+                h="33px"
+                _hover={{
+                  cursor: "pointer",
+                  backgroundColor: "#D6D6D6",
+                }}
+              >
+                <BsInstagram />
+                <Text fontSize="sm" fontWeight="semibold">
+                  Instagram
+                </Text>
+              </Flex>
+            </NavLink>
+            <NavLink to="/publishing/twitter">
+              <Flex
+                w="90%"
+                borderRadius="4px"
+                pl="5px"
+                alignItems="center"
+                gap="5px"
+                m="auto"
+                ml="40px"
+                h="33px"
+                _hover={{
+                  cursor: "pointer",
+                  backgroundColor: "#D6D6D6",
+                }}
+              >
+                <BsTwitter />
+                <Text fontSize="sm" fontWeight="semibold">
+                  Twitter
                 </Text>
               </Flex>
             </NavLink>
@@ -97,9 +160,11 @@ const sideBar = () => {
                 border: "1px solid grey",
               }}
             >
-              <Text color="grey" fontSize="sm" fontWeight="semibold">
-                Manage Channels
-              </Text>
+              <NavLink to="/channels">
+                <Text color="grey" fontSize="sm" fontWeight="semibold">
+                  Manage Channels
+                </Text>
+              </NavLink>
             </Flex>
           </NavLink>
         </Box>

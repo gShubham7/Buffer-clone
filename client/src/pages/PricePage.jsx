@@ -5,8 +5,7 @@ import Navbar from "../components/prakash/Components/Navbar/Navbar";
 
 const Pricing = () => {
   return (
-    <Box>
-      <Navbar/>
+    <Box marginBottom="30px">
       <Heading
         marginTop="40px"
         textAlign="center"

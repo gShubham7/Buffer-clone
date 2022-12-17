@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   posts: postReducer,
 });
 
-const createComposer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = legacy_createStore(
   rootReducer,
   createComposer(applyMiddleware(thunk))

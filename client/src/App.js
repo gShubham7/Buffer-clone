@@ -1,9 +1,26 @@
+import "./App.css";
+import Admin from "./pages/Admin";
 import AllRoutes from "./routes/AllRoutes";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <AllRoutes />
+      <ChakraProvider>
+        <AllRoutes />
+      </ChakraProvider>
+      <Routes>
+        <Route
+          exact
+          path="/admin"
+          element={
+            // <AdminPrivateAuth>
+              <Admin />
+            // </AdminPrivateAuth>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }
