@@ -1,0 +1,19 @@
+
+
+.flex {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* @media all and (min-width: 851px) and (max-width: 1024px){
+   
+} */
+
+@media all and (min-width: 250px) and (max-width: 851px){
+    .flex {
+        margin: auto;
+        flex-direction: column;
+    }
+}
