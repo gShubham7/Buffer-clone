@@ -131,8 +131,7 @@ const post_CommentId = async (req, res) => {
 const createPost = async (req, res) => {
   const { title, start, end, channels } = req.body;
   // console.log(channels);
-  const token = req.headers.authorization;
-  console.log(token);
+  const token = req.headers.authorization; 
   const { facebook_posts, instagram_posts, linkedin_posts } = channels;
 
   if (req.file) {

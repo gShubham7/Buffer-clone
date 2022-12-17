@@ -1,45 +1,45 @@
 .maindiv {
-    margin: auto;
-    width: 100%;
-    display: flex;
-    gap: 40px;
-    margin-top: 40px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  margin-top: 5px;
 }
 .sidebar > div > img {
-    width: 20px;
-   
+  width: 20px;
 }
 .first {
-    color: black;
-    font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
 .sidebar {
-    border-right: 1px solid black;
-    padding-right: 20px;
+  border-right: 1px solid grey;
+  padding-right: 20px;
+  height: 100vh;
 }
 
 .sidebar > div {
-    margin-left: 20px;
-    display: flex;
-    gap: 15px;
-    padding: 5px;
-    margin-bottom: 10px;
+  margin-left: 20px;
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-.sidebar > div:hover{
-    background-color: rgb(223, 220, 220);
-     /* background-color: #2c4bff; */
-} 
+.sidebar > div:hover {
+  background-color: rgb(223, 220, 220);
+  /* background-color: #2c4bff; */
+}
 
 .second {
-    margin: auto;
-    width: 50%;
-    text-align: left;
+  margin: auto;
+  width: 50%;
+  text-align: left;
 }
 .gridbox {
   margin: auto;
   padding: auto;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   text-align: center;
   margin-top: 40px;
@@ -47,31 +47,30 @@
 }
 
 .gridbox > div {
-   padding: 10px;
-   height: 180px;
-   display: flex;
-   flex-direction: column;
-   border-radius: 10px;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .gridbox > div:hover {
-    border: 1px solid blue;
+  border: 1px solid blue;
 }
 
 .gridbox > div > img {
-    margin: auto;
-   width: 40px;
-
+  margin: auto;
+  width: 40px;
 }
 .p1 {
-    font-size: 20px;
-   
+  font-size: 20px;
 }
 .p2 {
   color: gray;
 }
 .p3 {
-    color: blue;
-    font-weight: bold;
+  color: blue;
+  font-weight: bold;
+  cursor: pointer;
 }

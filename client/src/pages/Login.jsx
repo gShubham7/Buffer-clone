@@ -19,11 +19,12 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { login } from "../redux/auth/auth.actions";
 import { signInWithGoogle } from "../components/sandeep/firbase";
+import axios from "axios";
 // import Loading from "../sandeep/components/loading";
 
 const Login = () => {
@@ -33,6 +34,17 @@ const Login = () => {
   const dispatch = useDispatch();
   const [loginCreds, setLoginCreds] = useState({});
   const toast = useToast();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/auth/google/getuser", {
+        withCredentials: true,
+      })
+      .then((res) =>
+        dispatch(login({ email: res.data.email, password: "1234" }))
+      )
+      .catch((e) => console.log(e));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,6 +79,11 @@ const Login = () => {
     dispatch(login());
   };
 
+  const googleLogin = () => {
+    window.open("http://localhost:8080/auth/google", "_self");
+    dispatch(login());
+  };
+
   // if (loading) {
   //   return <Loading />;
   // }
@@ -80,7 +97,7 @@ const Login = () => {
     });
     return <Navigate to="/login" />;
   }
-  if (isAuth) {    
+  if (isAuth) {
     return <Navigate to="/publishing" />;
   }
   return (
@@ -176,7 +193,7 @@ const Login = () => {
               w="full"
               colorScheme="messenger"
               variant="solid"
-              onClick={handleGoogle}
+              onClick={googleLogin}
             >
               Log In With Google
             </Button>

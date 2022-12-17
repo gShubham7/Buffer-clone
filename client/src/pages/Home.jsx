@@ -21,7 +21,6 @@ const PlayIcon = createIcon({
 function Home() {
   return (
     <Box>
-      <Navbar />
       <Box mt="150px">
         <Flex
           alignItems="center"
@@ -966,7 +965,6 @@ function Home() {
         </Flex>
         <Spacer mt="100px" />
       </Box>
-      <Footer />
     </Box>
   );
 }

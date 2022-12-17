@@ -8,6 +8,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import InnerModal from "./InnerModal";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionLogout } from "../../redux/auth/auth.actions";
+import axios from "axios";
 
 const AltNavbar = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,12 @@ const AltNavbar = () => {
 
   const handleLogout = () => {
     dispatch(ActionLogout());
-    <Navigate to="/" />;
+    axios
+      .get(`http://localhost:8080/auth/google/logout`, {
+        withCredentials: true,
+      })
+      .then((res) => <Navigate to="/" />)
+      .catch((e) => console.log(e));
   };
   return (
     <>
@@ -43,67 +49,64 @@ const AltNavbar = () => {
           display={["none", "none", "none", "none", "flex"]}
           width={["0%", "0%", "0%", "0%", "50%"]}
         >
-          <NavLink to="/">
-            <Flex pr="20px" pl="20px" gap="1">
+          <Flex pr="20px" pl="20px" gap="1">
+            <NavLink to="/">
               <Image w="100px" src="./Ecotone_small.png" />
               {/* <Text fontSize="xl" fontWeight="bold">
                 Buffer
               </Text> */}
-            </Flex>
-          </NavLink>
-          <Flex>
-            <NavLink to="/publishing">
-              <Box
-                p="1.2rem"
-                pl="28px"
-                pr="28px"
-                color="rgb(99, 99, 99)"
-                _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
-              >
-                <Text fontSize="md" fontWeight="bold">
-                  Publishing
-                </Text>
-              </Box>
             </NavLink>
-            <NavLink to="/analytics">
-              <Box
-                p="1.2rem"
-                pl="28px"
-                pr="28px"
-                color="rgb(99, 99, 99)"
-                _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
-              >
+          </Flex>
+          <Flex>
+            <Box
+              p="1.2rem"
+              pl="28px"
+              pr="28px"
+              color="rgb(99, 99, 99)"
+              _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
+            >
+              {" "}
+              <Text fontSize="md" fontWeight="bold">
+                <NavLink to="/publishing">Publishing</NavLink>
+              </Text>
+            </Box>
+            <Box
+              p="1.2rem"
+              pl="28px"
+              pr="28px"
+              color="rgb(99, 99, 99)"
+              _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
+            >
+              <NavLink to="/analytics">
                 <Text fontSize="md" fontWeight="bold">
                   Analytics
                 </Text>
-              </Box>
-            </NavLink>
-            <NavLink to="/engagement">
-              <Box
-                p="1.2rem"
-                pl="28px"
-                pr="28px"
-                color="rgb(99, 99, 99)"
-                _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
-              >
+              </NavLink>
+            </Box>
+            <Box
+              p="1.2rem"
+              pl="28px"
+              pr="28px"
+              color="rgb(99, 99, 99)"
+              _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
+            >
+              <NavLink to="/engagement">
                 <Text fontSize="md" fontWeight="bold">
                   Engagement
                 </Text>
-              </Box>
-            </NavLink>
-            <NavLink to="#">
-              <Box
-                p="1.2rem"
-                pl="28px"
-                pr="28px"
-                color="rgb(99, 99, 99)"
-                _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
-              >
-                <Text fontSize="md" fontWeight="bold">
-                  Start Page
-                </Text>
-              </Box>
-            </NavLink>
+              </NavLink>
+            </Box>
+            <Box
+              p="1.2rem"
+              pl="28px"
+              pr="28px"
+              color="rgb(99, 99, 99)"
+              _hover={{ backgroundColor: "#F5F5F5", color: "#2C4BFF" }}
+            >
+              <Text fontSize="md" fontWeight="bold">
+                <NavLink to="#">Start Page</NavLink>
+              </Text>
+            </Box>
           </Flex>
         </Flex>
         <Flex
@@ -111,59 +114,53 @@ const AltNavbar = () => {
           display={["none", "none", "flex", "flex", "flex"]}
           width={["50%", "50%", "80%", "80%", "50%"]}
         >
-          <NavLink to="#">
-            <Flex
-              alignItems="center"
-              gap="4px"
-              color="#2C4BFF"
-              p="1.2rem"
-              pl="28px"
-              pr="28px"
-            >
-              <FaUserFriends />
-              <Text fontWeight="medium" fontSize="md">
-                Invite Your Team
-              </Text>
-            </Flex>
-          </NavLink>
-          <NavLink to="#">
-            <Flex
-              alignItems="center"
-              p="1.2rem"
-              pl="28px"
-              pr="28px"
-              color="rgb(99, 99, 99)"
-              _hover={{ backgroundColor: "#F5F5F5", color: "#433D3D" }}
-              gap="4px"
-            >
-              <Text fontSize="14px" fontWeight="medium">
-                Apps
-              </Text>
-              <BsCaretDownFill fontSize="12px" />
-            </Flex>
-          </NavLink>
-          <NavLink to="#">
-            <Flex
-              alignItems="center"
-              p="1.2rem"
-              pl="28px"
-              pr="28px"
-              color="rgb(99, 99, 99)"
-              _hover={{ backgroundColor: "#F5F5F5", color: "#433D3D" }}
-              gap="4px"
-            >
-              <Text fontSize="14px" fontWeight="medium">
-                Help
-              </Text>
-              <BsCaretDownFill fontSize="12px" />
-            </Flex>
-          </NavLink>
-          <NavLink to="#">
-            <Flex pl="150px" _hover={{ backgroundColor: "#F5F5F5" }}>
+          <Flex
+            alignItems="center"
+            gap="4px"
+            color="#2C4BFF"
+            p="1.2rem"
+            pl="28px"
+            pr="28px"
+          >
+            <FaUserFriends />
+            <Text fontWeight="medium" fontSize="md">
+              <NavLink to="#">Invite Your Team</NavLink>
+            </Text>
+          </Flex>
+          <Flex
+            alignItems="center"
+            p="1.2rem"
+            pl="28px"
+            pr="28px"
+            color="rgb(99, 99, 99)"
+            _hover={{ backgroundColor: "#F5F5F5", color: "#433D3D" }}
+            gap="4px"
+          >
+            <Text fontSize="14px" fontWeight="medium">
+              <NavLink to="#">Apps</NavLink>
+            </Text>
+            <BsCaretDownFill fontSize="12px" />
+          </Flex>
+          <Flex
+            alignItems="center"
+            p="1.2rem"
+            pl="28px"
+            pr="28px"
+            color="rgb(99, 99, 99)"
+            _hover={{ backgroundColor: "#F5F5F5", color: "#433D3D" }}
+            gap="4px"
+          >
+            <Text fontSize="14px" fontWeight="medium">
+              <NavLink to="#">Help</NavLink>
+            </Text>
+            <BsCaretDownFill fontSize="12px" />
+          </Flex>
+          <Flex pl="150px" _hover={{ backgroundColor: "#F5F5F5" }} alignItems="center">
+            <NavLink to="#">
               <Text color="#D5C4BA">{mail}</Text>
+            </NavLink>
               <FaUserCircle icon="fa-duotone" size="26px" color="#121E66" />
-            </Flex>
-          </NavLink>
+          </Flex>
         </Flex>
         {showModal ? (
           <InnerModal show={showModal} setModal={setShowModal} />
