@@ -20,18 +20,18 @@ import { deletePost, getChannelsPosts } from "../redux/posts/post.action";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const FacebookPage = () => {
+const LinkedinPage = () => {
   const { data } = useSelector((store) => store.posts);
   const dispatch = useDispatch();
   const [editDate, setEditDate] = useState({});
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    dispatch(getChannelsPosts("facebook_posts"));
+    dispatch(getChannelsPosts("linkedin_posts"));
   }, []);
 
   const handleDelete = (_id) => {
-    dispatch(deletePost(_id, "facebook_posts"));
+    dispatch(deletePost(_id, "linkedin_posts"));
     // dispatch(getChannelsPosts("facebook_posts"));
   };
 
@@ -57,7 +57,7 @@ const FacebookPage = () => {
                 <DatePicker
                   placeholderText={el.end.split("T")[0]}
                   value={el.end.split("T")[0]}
-                //   selected={el.end}
+                  selected={el.end}
                   onChange={(start) => setEditDate({ start, end: start })}
                 />
               </Heading>
@@ -90,4 +90,4 @@ const FacebookPage = () => {
   );
 };
 
-export default FacebookPage;
+export default LinkedinPage;

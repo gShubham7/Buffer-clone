@@ -7,17 +7,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./Table.css";
+import { useSelector } from "react-redux";
 
 function createData(name, trackingId, date, status) {
   return { name, trackingId, date, status };
 }
-
-const rows = [
-  createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-  createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-  createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-  createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-];
 
 const makeStyle = (status) => {
   if (status === "Approved") {
@@ -39,6 +33,11 @@ const makeStyle = (status) => {
 };
 
 export default function BasicTable() {
+  const { data } = useSelector((store) => store.posts);
+
+  let recent = data.splice(0, 5);
+  const rows = recent;
+  console.log(data);
   return (
     <div className="Table">
       <h3>Recent Posts</h3>
@@ -49,8 +48,8 @@ export default function BasicTable() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align="left">Tracking ID</TableCell>
+              <TableCell>Post</TableCell>
+              <TableCell align="left">Post ID</TableCell>
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Status</TableCell>
               <TableCell align="left"></TableCell>
@@ -59,17 +58,17 @@ export default function BasicTable() {
           <TableBody style={{ color: "white" }}>
             {rows.map((row) => (
               <TableRow
-                key={row.name}
+                key={row._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.title}
                 </TableCell>
-                <TableCell align="left">{row.trackingId}</TableCell>
-                <TableCell align="left">{row.date}</TableCell>
+                <TableCell align="left">{row._id}</TableCell>
+                <TableCell align="left">{row.end.split("T")[0]}</TableCell>
                 <TableCell align="left">
                   <span className="status" style={makeStyle(row.status)}>
-                    {row.status}
+                    {"Active"}
                   </span>
                 </TableCell>
                 <TableCell align="left" className="Details">

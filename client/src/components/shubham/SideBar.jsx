@@ -4,7 +4,7 @@ import { AiTwotoneCalendar } from "react-icons/ai";
 import { HiTrendingUp } from "react-icons/hi";
 import { TbList } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
-import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const sideBar = () => {
   return (
@@ -38,26 +38,24 @@ const sideBar = () => {
           </NavLink>
 
           <Box mt="10px">
-            <NavLink to="#">
-              <Flex
-                w="90%"
-                borderRadius="4px"
-                pl="5px"
-                alignItems="center"
-                gap="5px"
-                m="auto"
-                h="33px"
-                _hover={{
-                  cursor: "pointer",
-                  backgroundColor: "#D6D6D6",
-                }}
-              >
-                <HiTrendingUp color="#c7c7c7" />
-                <Text fontSize="sm" fontWeight="semibold">
-                  Campaigns
-                </Text>
-              </Flex>
-            </NavLink>
+            <Flex
+              w="90%"
+              borderRadius="4px"
+              pl="5px"
+              alignItems="center"
+              gap="5px"
+              m="auto"
+              h="33px"
+              _hover={{
+                cursor: "pointer",
+                backgroundColor: "#D6D6D6",
+              }}
+            >
+              <HiTrendingUp color="#c7c7c7" />
+              <Text fontSize="sm" fontWeight="semibold">
+                Campaigns
+              </Text>
+            </Flex>
           </Box>
           <Box mt="10px">
             <Flex
@@ -80,7 +78,7 @@ const sideBar = () => {
             </Flex>
             <NavLink to="/publishing/facebook">
               <Flex
-                w="90%"
+                w="80%"
                 borderRadius="4px"
                 pl="5px"
                 alignItems="center"
@@ -101,7 +99,7 @@ const sideBar = () => {
             </NavLink>
             <NavLink to="/publishing/instagram">
               <Flex
-                w="90%"
+                w="80%"
                 borderRadius="4px"
                 pl="5px"
                 alignItems="center"
@@ -120,9 +118,9 @@ const sideBar = () => {
                 </Text>
               </Flex>
             </NavLink>
-            <NavLink to="/publishing/twitter">
+            <NavLink to="/publishing/linkedin">
               <Flex
-                w="90%"
+                w="80%"
                 borderRadius="4px"
                 pl="5px"
                 alignItems="center"
@@ -135,38 +133,36 @@ const sideBar = () => {
                   backgroundColor: "#D6D6D6",
                 }}
               >
-                <BsTwitter />
+                <BsLinkedin />
                 <Text fontSize="sm" fontWeight="semibold">
-                  Twitter
+                  LinkedIn
                 </Text>
               </Flex>
             </NavLink>
           </Box>
         </Box>
         <Box mb="10px">
-          <NavLink to="/channels">
-            <Flex
-              justifyContent="center"
-              alignItems="center"
-              w="90%"
-              border="1px solid #c7c7c7"
-              borderRadius="4px"
-              pl="5px"
-              gap="5px"
-              m="auto"
-              h="40px"
-              _hover={{
-                cursor: "pointer",
-                border: "1px solid grey",
-              }}
-            >
-              <NavLink to="/channels">
-                <Text color="grey" fontSize="sm" fontWeight="semibold">
-                  Manage Channels
-                </Text>
-              </NavLink>
-            </Flex>
-          </NavLink>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            w="90%"
+            border="1px solid #c7c7c7"
+            borderRadius="4px"
+            pl="5px"
+            gap="5px"
+            m="auto"
+            h="40px"
+            _hover={{
+              cursor: "pointer",
+              border: "1px solid grey",
+            }}
+          >
+            <NavLink to="/channels">
+              <Text color="grey" fontSize="sm" fontWeight="semibold">
+                Manage Channels
+              </Text>
+            </NavLink>
+          </Flex>
         </Box>
       </Flex>
     </>

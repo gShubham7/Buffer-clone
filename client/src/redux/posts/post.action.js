@@ -20,9 +20,25 @@ axios.defaults.headers.common["Authorization"] = token;
 export const getPosts = () => async (dispatch) => {
   dispatch({ type: GET_POST_REQUEST });
   try {
-    const res = await axios.post(`http://localhost:8080/user/profile`);
-    const data = await res.data;   
+    const res = await axios.post(
+      `https://mauve-rabbit-gown.cyclic.app/user/profile`
+    );
+    const data = await res.data;
     dispatch({ type: GET_POST_SUCCESS, payload: data.posts });
+  } catch (e) {
+    dispatch({ type: GET_POST_FAILURE });
+  }
+};
+
+export const getChannelsPosts = (id) => async (dispatch) => {
+  dispatch({ type: GET_POST_REQUEST });
+  try {
+    const res = await axios.get(
+      `https://mauve-rabbit-gown.cyclic.app/user/post/${id}`
+    );
+    const data = await res.data;
+    console.log(data);
+    dispatch({ type: GET_POST_SUCCESS, payload: data.post });
   } catch (e) {
     dispatch({ type: GET_POST_FAILURE });
   }
@@ -32,7 +48,10 @@ export const createPost = (formData) => async (dispatch) => {
   console.log(formData);
   dispatch({ type: CREATE_POST_REQUEST });
   try {
-    const res = await axios.post(`http://localhost:8080/user/create`, formData);
+    const res = await axios.post(
+      `https://mauve-rabbit-gown.cyclic.app/user/create`,
+      formData
+    );
     const data = await res.data;
     dispatch({ type: CREATE_POST_SUCCESS, payload: data });
   } catch (e) {
@@ -47,9 +66,13 @@ export const updatePost = (formData, token) => async (dispatch) => {
       "Content-type": "application/json",
       Authorization: `${token}`,
     };
-    const res = await axios.post(`http://localhost:8080/user/edit`, formData, {
-      headers,
-    });
+    const res = await axios.post(
+      `https://mauve-rabbit-gown.cyclic.app/user/edit`,
+      formData,
+      {
+        headers,
+      }
+    );
     const data = await res.data;
     dispatch({ type: UPDATE_POST_SUCCESS, payload: data });
   } catch (e) {
@@ -57,18 +80,16 @@ export const updatePost = (formData, token) => async (dispatch) => {
   }
 };
 
-export const deletePost = (id, token) => async (dispatch) => {
+export const deletePost = (_id, channel) => async (dispatch) => {
+  console.log(channel)
   dispatch({ type: DELETE_POST_REQUEST });
   try {
-    const headers = {
-      "Content-type": "application/json",
-      Authorization: `${token}`,
-    };
-    const res = await axios.post(`http://localhost:8080/user/delete`, id, {
-      headers,
-    });
+    const res = await axios.delete(
+      `https://mauve-rabbit-gown.cyclic.app/user/delete/${channel}/${_id}`
+    );
     const data = await res.data;
     dispatch({ type: DELETE_POST_SUCCESS, payload: data });
+    return getChannelsPosts(channel);
   } catch (e) {
     dispatch({ type: DELETE_POST_FAILURE });
   }

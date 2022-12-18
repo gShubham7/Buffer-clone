@@ -28,9 +28,10 @@ import axios from "axios";
 // import Loading from "../sandeep/components/loading";
 
 const Login = () => {
-  const { isAuth, loading, error, errorMessage } = useSelector(
+  const { isAuth, AdminIsAuth, loading, error, errorMessage } = useSelector(
     (store) => store.auth
   );
+  
   const dispatch = useDispatch();
   const [loginCreds, setLoginCreds] = useState({});
   const toast = useToast();
@@ -45,7 +46,6 @@ const Login = () => {
       )
       .catch((e) => console.log(e));
   }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginCreds({
@@ -87,6 +87,7 @@ const Login = () => {
   // if (loading) {
   //   return <Loading />;
   // }
+
   if (error) {
     toast({
       title: "Wrong Credentials",
@@ -95,10 +96,13 @@ const Login = () => {
       duration: 4000,
       isClosable: true,
     });
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
   if (isAuth) {
     return <Navigate to="/publishing" />;
+  }
+  if (AdminIsAuth && isAuth) {
+    return <Navigate to="/admin" />;
   }
   return (
     <HStack w="full">

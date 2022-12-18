@@ -4,8 +4,9 @@ import CalendarComponent from "../components/shubham/Calendar";
 import FacebookPage from "../pages/FacebookPage";
 import InstagramPage from "../pages/InstagramPage";
 import { Publishing } from "../pages/Publishing";
-import TwitterPage from "../pages/TwitterPage";
+import linkedinPage from "../pages/LinkedinPage";
 import PrivateRoute from "./PrivateRoute";
+import LinkedinPage from "../pages/LinkedinPage";
 
 const PublishingRoutes = () => {
   return (
@@ -16,7 +17,7 @@ const PublishingRoutes = () => {
           path="/publishing"
           element={
             <PrivateRoute>
-              <Publishing />
+              <CalendarComponent />
             </PrivateRoute>
           }
         ></Route>
@@ -49,10 +50,10 @@ const PublishingRoutes = () => {
         ></Route>
         <Route
           exact
-          path="/publishing/twitter"
+          path="/publishing/linkedin"
           element={
             <PrivateRoute>
-              <TwitterPage />
+              <LinkedinPage />
             </PrivateRoute>
           }
         ></Route>

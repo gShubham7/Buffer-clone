@@ -6,6 +6,7 @@ import {
   UilPackage,
   UilChart,
   UilSignOutAlt,
+  UilFastMail,
 } from "@iconscout/react-unicons";
 
 // Analytics Cards imports
@@ -33,11 +34,11 @@ export const SidebarData = [
   },
   {
     icon: UilPackage,
-    heading: 'Products'
+    heading: "Products",
   },
   {
     icon: UilChart,
-    heading: 'Analytics'
+    heading: "Analytics",
   },
 ];
 
@@ -51,7 +52,7 @@ export const cardsData = [
     },
     barValue: 70,
     value: "25,970",
-    png: UilUsdSquare,
+    png: UilUsersAlt,
     series: [
       {
         name: "Sales",
@@ -67,7 +68,7 @@ export const cardsData = [
     },
     barValue: 80,
     value: "14,270",
-    png: UilMoneyWithdrawal,
+    png: UilFastMail,
     series: [
       {
         name: "Revenue",
@@ -99,19 +100,28 @@ export const UpdatesData = [
   {
     img: img1,
     name: "Shubham Gaikwad",
-    noti: "has great problem solving ability.",
-    time: "25 seconds ago",
+    // noti: "has great problem solving ability.",
   },
   {
     img: img2,
-    name: "James Bond",
-    noti: "has received Samsung gadget for charging battery.",
-    time: "30 minutes ago",
+    name: "Anjali Dhanjode",
+    // noti: "has experties in UI Developement.",
   },
   {
     img: img3,
-    name: "Iron Man",
-    noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
-    time: "2 hours ago",
+    name: "Prakash Rajesh Singh",
+    // noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
+  },
+  ,
+  {
+    img: img3,
+    name: "Sandeep Gond",
+    // noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
+  },
+  ,
+  {
+    img: img3,
+    name: "Ajay Jha",
+    // noti: "has ordered Apple smart watch, samsung Gear 2500mh battery.",
   },
 ];

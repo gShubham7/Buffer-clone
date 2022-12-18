@@ -8,7 +8,7 @@ const Updates = () => {
       {UpdatesData.map((update) => {
         return (
           <div className="update" key={update.noti}>
-            <img src={update.img} alt="profile" />
+            {/* <img src={update.img} alt="profile" /> */}
             <div className="noti">
               <div style={{ marginBottom: "0.5rem" }}>
                 <span>{update.name}</span>

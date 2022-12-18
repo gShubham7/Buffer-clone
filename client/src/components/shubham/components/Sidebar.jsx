@@ -5,11 +5,16 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { SidebarData } from "../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import { ActionLogout } from "../../../redux/auth/auth.actions";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
   const [selected, setSelected] = useState(0);
 
   const [expanded, setExpaned] = useState(true);
+
+  const dispatch = useDispatch();
 
   const sidebarVariants = {
     true: {
@@ -51,13 +56,15 @@ const Sidebar = () => {
                 onClick={() => setSelected(index)}
               >
                 <item.icon />
-                <span>{item.heading}</span>
+                <NavLink to={`/admin/${item.heading.toLocaleLowerCase()}`}>
+                  <span>{item.heading}</span>
+                </NavLink>
               </div>
             );
           })}
           {/* signoutIcon */}
           <div className="menuItem">
-            <UilSignOutAlt />
+            <UilSignOutAlt onClick={() => dispatch(ActionLogout())} />
           </div>
         </div>
       </motion.div>

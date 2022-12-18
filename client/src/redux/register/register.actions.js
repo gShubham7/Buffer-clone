@@ -6,11 +6,11 @@ import {
 } from "./register.types";
 
 export const registerUser = (creds) => async (dispatch) => {
-  console.log(creds)
+  console.log(creds);
   dispatch({ type: REGISTER_REQUEST });
   try {
     let res = await axios.post(
-      "http://localhost:8080/auth/register",
+      "https://mauve-rabbit-gown.cyclic.app/auth/register",
       creds
     );
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });

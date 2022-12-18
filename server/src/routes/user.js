@@ -2,7 +2,8 @@ const express = require("express");
 const Router = express.Router();
 const upload = require("../middlewares/imageUploader");
 const {
-  data,
+  all,
+  deleteUser,
   profile,
   posts,
   serachQuery,
@@ -15,7 +16,9 @@ const {
   deletePost,
 } = require("../controllers/user.controller");
 
-Router.post("/data", data);
+Router.get("/all", all);
+
+Router.delete("/deleteuser/:_id", deleteUser);
 
 //profile of the particular user......................
 Router.post("/profile", profile);
@@ -45,6 +48,6 @@ Router.post("/create", upload.single("image"), createPost);
 Router.post("/edit", upload.single("image"), editPost);
 
 //delete the post...................
-Router.post("/delete", upload.single("image"), deletePost);
+Router.delete("/delete/:channel/:_id", upload.single("image"), deletePost);
 
 module.exports = Router;

@@ -31,7 +31,12 @@ const register = async (req, res) => {
       //   }
       //   return res.status(403).send("You are not allowed to create user");
       // }
-      const newUser = await UserModel.create({ name, email, password: hash });
+      const newUser = await UserModel.create({
+        name,
+        email,
+        password: hash,
+        role: "User",
+      });
       return res.status(201).send({ user: newUser });
     } catch (err) {
       return res.status(500).send({ error: "Internal server error" });

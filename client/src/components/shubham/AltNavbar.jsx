@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Image, Text, Flex, HStack, Button } from "@chakra-ui/react";
-import { Navigate, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import { FaUserFriends } from "react-icons/fa";
 import { BsCaretDownFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { ActionLogout } from "../../redux/auth/auth.actions";
 import axios from "axios";
 
 const AltNavbar = () => {
+  const { AdminIsAuth } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const [mail, setMail] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -155,11 +156,20 @@ const AltNavbar = () => {
             </Text>
             <BsCaretDownFill fontSize="12px" />
           </Flex>
-          <Flex pl="150px" _hover={{ backgroundColor: "#F5F5F5" }} alignItems="center">
+          <Flex
+            pl="150px"
+            _hover={{ backgroundColor: "#F5F5F5" }}
+            alignItems="center"
+          >
             <NavLink to="#">
-              <Text color="#D5C4BA">{mail}</Text>
+              <Text
+                color="#D5C4BA"
+                onClick={() => (AdminIsAuth ? <Link to="/" /> : null)}
+              >
+                {mail}
+              </Text>
             </NavLink>
-              <FaUserCircle icon="fa-duotone" size="26px" color="#121E66" />
+            <FaUserCircle icon="fa-duotone" size="26px" color="#121E66" />
           </Flex>
         </Flex>
         {showModal ? (

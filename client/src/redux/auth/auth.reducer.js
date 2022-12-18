@@ -10,6 +10,7 @@ const check =
   LocalToken !== undefined && LocalToken !== null && LocalToken !== "";
 const email = localStorage.getItem("email");
 const checkAdminAuth = email == "admin@gmail.com";
+console.log(checkAdminAuth)
 const initialState = {
   token: { token: LocalToken },
   isAuth: check,

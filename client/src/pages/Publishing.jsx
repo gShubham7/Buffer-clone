@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AltNavbar from "../components/shubham/AltNavbar";
 import SideBar from "../components/shubham/SideBar";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import CalendarComponent from "../components/shubham/Calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/posts/post.action";
@@ -15,11 +15,7 @@ export const Publishing = () => {
   
   return (
     <div>
-      {/* <AltNavbar /> */}
-      {/* <Flex justifyContent="space-between"> */}
-        {/* <SideBar />     */}
-        {/* <PublishingRoutes/>       */}
-      {/* </Flex> */}
+      <Image src="./publish.gif" h="90vh"/>
     </div>
   );
 };
