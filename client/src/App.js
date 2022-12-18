@@ -3,6 +3,7 @@ import Admin from "./pages/Admin";
 import AllRoutes from "./routes/AllRoutes";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
+import AdminPrivateAuth from "./routes/AdminPrivateAuth";
 
 function App() {
   return (
@@ -15,9 +16,9 @@ function App() {
           exact
           path="/admin"
           element={
-            // <AdminPrivateAuth>
+            <AdminPrivateAuth>
               <Admin />
-            // </AdminPrivateAuth>
+            </AdminPrivateAuth>
           }
         ></Route>
       </Routes>
