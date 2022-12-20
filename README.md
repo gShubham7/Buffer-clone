@@ -7,6 +7,14 @@
 
 <h2 align="center">🖥️ Tech Stack</h2>
 
+## Team Members.
+1.	Mr. Shubham Gaikwad [Team Leader].
+2.	Mr. sandeep Gond.
+3.	Mr. Prakash Singh.
+4.	Ms. Anjali Dhanjode.
+5.	Mr. Ajay jha.
+
+
 
 <h4 align="center">Frontend:</h4>
 
