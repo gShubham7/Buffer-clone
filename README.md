@@ -45,7 +45,7 @@
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-<a href="https://ecotone77.netlify.app/">
+<a href="https://u6project.netlify.app/">
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="vercel" />
 </a>  
 <a href="https://mauve-rabbit-gown.cyclic.app/">
@@ -55,7 +55,7 @@
 
 
 
-<h3 align="center"><a href="https://ecotone77.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
+<h3 align="center"><a href="https://u6project.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
 
 
 <br />
@@ -138,7 +138,7 @@ its Fully Responsive social media post scheduler web application that allows you
 
 
 # PROJECT NETLIFY LINK
-https://ecotone77.netlify.app/
+https://u6project.netlify.app/
 
 
 ### Tools used on this project
